@@ -238,7 +238,7 @@ $buttonSearch_Click={
 	$textbox1.Text = Get-ADUser -Filter * | where {$_.surname -like "*$user*"} | Format-Table -Property Name, samAccountName -AutoSize | Out-String
 }
 ]]></Code>
-  <Mode>1</Mode>
+  <Mode>0</Mode>
   <Assemblies>
     <Assembly>System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
     <Assembly>mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Assembly>
