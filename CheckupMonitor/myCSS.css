@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+@keyframes fadeStoppedService {
+	from {background-color: rgba(255,0,0,0);}
+	to {background-color: rgba(255,0,0,1);}	
+}
+
+table {
+	width: 100%;
+	align: left;
+	text-align: left;
+}
+
+caption {
+	font-size:18px;
+	font-weight: bold;	
+}
+
+tr[id="tableHeader"] {
+	
+}
+
+th {
+	font-weight: bold;	
+}
+
+th[id="service"] {
+	text-align: center;
+}
+
+td[id="service"] {
+	text-align: center;
+}
+
+td[id="serverName"] {
+	font-weight: bold;
+}
+
+td[stat="running"] {
+	background-color: rgba(0,255,51,0.55);
+}
+
+td[stat="stopped"] {
+    background-color: rgba(255,0,0,1);
+    animation-name: fadeStoppedService;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+	animation-timing-function:ease-in-out;
+	animation-direction: alternate;
+}

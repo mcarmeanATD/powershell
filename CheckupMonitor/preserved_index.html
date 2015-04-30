@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Checkup</title>
+<script>
+// Clears cached page/reloads browser every 5 seconds
+$(document).ready(function() {
+setInterval(function(){cache_clear()},5000);
+});
+
+function cache_clear() {
+window.location.reload(true);
+}
+
+</script>
+<link href="myCSS.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div id="statusTable">
+<table>
+ <caption>Server Status Overview</caption>
+ <tr id="tableHeader">
+  <th id="serverName">Server Name</th>
+  <th>IP Address</th>
+  <th>Time Stamp</th>
+  <th id="service">Services</th>
+ </tr>
+ <tr>
+   <td id="serverName">1476-MCARMEAN</td>
+   <td id="ipAddress">10.130.13.90</td>
+   <td id="timeStamp">1:59 PM</td>
+   <td id="service" stat="running">Print Spooler</td>
+   <td id="service" stat="running">Remote Desktop Services</td>
+   <td id="service" stat="running">SQL Server (MICROSOFTSCM)</td>
+   <td id="service" stat="stopped">Windows Backup</td>
+ </tr> 
+ <tr>
+  <td id="serverName">astdexchcas</td>
+  <td>66.127.45.88</td>
+  <td>Not Set</td>
+  <td id="service" stat="running">Running</td>
+  <td id="service" stat="running">Running</td>
+  <td id="service" stat="stopped">Stopped</td>
+  <td id="service" stat="running">Running</td>
+  <td id="service" stat="running">Running</td>
+ </tr>
+</table>
+</div>
+<script>
+
+</script>
+</body>
+</html>

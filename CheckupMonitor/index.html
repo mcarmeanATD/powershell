@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Checkup</title>
+<script>
+// Clears cached page/reloads browser every 5 seconds
+$(document).ready(function() {
+setInterval(function(){cache_clear()},5000);
+});
+
+function cache_clear() {
+window.location.reload(true);
+}
+
+</script>
+<link href="myCSS.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="statusTable">
+<table>
+ <caption>Server Status Overview</caption>
+ <tr id="tableHeader">
+  <th id="serverName">Server Name</th>
+  <th>IP Address</th>
+  <th>NTP</th>
+  <th id="service">Services</th>
+ </tr>
+ 
+</table>
+</div>
+</body>
+</html>
