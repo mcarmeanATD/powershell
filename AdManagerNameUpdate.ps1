@@ -16,11 +16,14 @@
 
 Import-Module ActiveDirectory
 
-$ad = Get-ADUser -Properties "DisplayName","extensionAttribute3" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter *
+$ad = Get-ADUser -Properties "samAccountName", "manager", "extensionAttribute3" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter *
 
 
 foreach ($i in $ad) {
-	$managerDN = Get-ADUser -Properties "DisplayName", "distinguishedName", "employeeID" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter * | where { $_.EmployeeID -eq $i.extensionAttribute3 } | select EmployeeID, displayName, distinguishedName
-	Write-Host $i.DisplayName, $i.extensionAttribute3
-	Write-Host $managerDN.DisplayName, $managerDN.EmployeeID, $managerDN.distinguishedName
-}
+	$managerDN = Get-ADUser -Properties "distinguishedName", "employeeID" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter * | where { $_.EmployeeID -eq $i.extensionAttribute3 } | select EmployeeID, distinguishedName
+	if ($i.manager -ne $managerDN.distinguishedName) {
+		Write-Host $i.samAccountName, $i.manager, $i.extensionAttribute3, $managerDN.employeeID, $managerDN.distinguishedName
+	}
+	#Write-Host $i.samAccountName, $i.manager, $i.extensionAttribute3
+		#Write-Host $managerDN.EmployeeID, $managerDN.distinguishedName
+	}
