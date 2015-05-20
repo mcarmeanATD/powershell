@@ -16,20 +16,6 @@
 
 Import-Module ActiveDirectory
 
-function CheckManager {
-	$ad = Get-ADUser -Properties "samAccountName", "manager", "extensionAttribute3" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter *
-
-	foreach ($i in $ad) {
-		$manager = Get-ADUser -Properties "distinguishedName", "employeeID" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter * | where `
-		{ $_.EmployeeID -eq $i.extensionAttribute3 } | select EmployeeID, distinguishedName
-		
-		if ($i.manager -ne $manager.distinguishedName) {
-			Write-Host $i.samAccountName, $i.manager, $i.extensionAttribute3, $manager.employeeID, $manager.distinguishedName
-		}
-	}
-	Write-Host "Check Complete."
-} # End function CheckManager
-
 function UpdateManager {
 	$ad = Get-ADUser -Properties "samAccountName", "manager", "extensionAttribute3" -SearchBase "OU=Employees,DC=hq,DC=astd,DC=org" -Filter *
 
@@ -38,10 +24,10 @@ function UpdateManager {
 		{ $_.EmployeeID -eq $i.extensionAttribute3 } | select EmployeeID, distinguishedName
 		
 		if ($i.manager -ne $manager.distinguishedName) {
-			Set-ADUser -Identity $i.samAccountName -Manager $manager.distinguishedName -Confirm
+			Set-ADUser -Identity $i.samAccountName -Manager $manager.distinguishedName
 		}
 	}
 	Write-Host "Update Complete."
 } # End function UpdateManager
 
-
+UpdateManager
