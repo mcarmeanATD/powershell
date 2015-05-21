@@ -13,6 +13,7 @@ function Get-ServerState {
 	begin {
 	}
 	process {
+		#try {
 		foreach ($c in $ComputerName) {
 			
 				$ping = Test-Connection -ComputerName $c -Quiet
@@ -50,14 +51,17 @@ function Get-ServerState {
 						Time = $time
 						Service = $serviceTable
 					}
-				
+					
 					New-Object -TypeName PSObject -Property $properties
 					 
 				}
 			}
+		#}
+	#	catch {
+	#	}
 	}
-	
-	#end {
+
+#end {
 #		try {
 #		}
 #		catch {
@@ -65,11 +69,3 @@ function Get-ServerState {
 #}
 }
 
-$Computers = @("astd-hq-dfs03","1476-mcarmean","astd-hq-dc04")
-foreach ($i in $Computers) {
-	$CurrentComputer = Get-ServerState $i spooler, defragsvc, gpsvc
-	Write-Output $CurrentComputer.Name, $CurrentComputer.Time, $CurrentComputer.IP
-	foreach ($s in $CurrentComputer.Service.GetEnumerator()) {
-		Write-Output $s.Name,$s.Value 	
-	}
-}
